@@ -4,8 +4,12 @@ import { ListContext } from '../store';
 import { Video } from 'expo-av';
 import { GlobalStyles } from '../constants/styles';
 
-const Welcome = () => {
+const Welcome = ({ navigation }) => {
   const ctx = useContext(ListContext);
+
+  const startHandler = () => {
+    navigation.navigate('CreateList');
+  };
 
   return (
     <View style={styles.container}>
@@ -27,6 +31,7 @@ const Welcome = () => {
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
+        onPress={startHandler}
       >
         <Text style={styles.buttonText}>Başla!</Text>
       </Pressable>

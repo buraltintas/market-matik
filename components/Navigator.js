@@ -1,8 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { GlobalStyles } from '../constants/styles';
 import Welcome from '../screens/Welcome';
 import MarketList from '../screens/MarketList';
+import CreateList from '../screens/CreateList';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,14 +13,21 @@ const Navigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerStyle: { backgroundColor: '#FFF6ED' },
+          headerStyle: { backgroundColor: GlobalStyles.colors.secondary },
           headerTintColor: 'black',
-          contentStyle: { backgroundColor: '#FFF6ED' },
+          contentStyle: { backgroundColor: GlobalStyles.colors.secondary },
         }}
       >
         <Stack.Screen
           name='Welcome'
           component={Welcome}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name='CreateList'
+          component={CreateList}
           options={{
             headerShown: false,
           }}
