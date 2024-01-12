@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, FlatList } from 'react-native';
+import uuid from 'react-native-uuid';
 import CurrencyInput from 'react-native-currency-input';
 import Button from '../components/Button';
 import ListItem from '../components/ListItem';
@@ -7,7 +8,7 @@ import { GlobalStyles } from '../constants/styles';
 import { ListContext } from '../store';
 
 const CreateList = () => {
-  const { createNewList } = useContext(ListContext);
+  const { updateLists } = useContext(ListContext);
   const [list, setList] = useState([]);
   const [itemName, setItemName] = useState('');
   const [totalAmountValue, setTotalAmountValue] = useState(null);
@@ -50,13 +51,17 @@ const CreateList = () => {
 
   const createList = () => {
     const listData = {
+      id: uuid.v4(),
       list,
       totalAmountValue,
       totalAmountText,
       createdDate: new Date(),
       marketDate: null,
-      name: null,
+      marketName: null,
+      isDone: false,
     };
+
+    updateLists(listData);
   };
 
   return (
@@ -114,7 +119,7 @@ const CreateList = () => {
             setTotalAmountText(formattedValue);
           }}
         />
-        <Button label={'Oluştur'} onPress={() => {}} />
+        <Button label={'Oluştur'} onPress={createList} />
       </View>
     </View>
   );

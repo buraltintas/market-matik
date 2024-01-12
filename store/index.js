@@ -4,36 +4,29 @@ import { createContext, useEffect, useState } from 'react';
 export const ListContext = createContext({});
 
 const ListProvider = ({ children }) => {
-  const [marketList, setMarketList] = useState([]);
-  const [targetAmount, setTargetAmount] = useState(null);
+  const [lists, setLists] = useState([]);
 
   useEffect(() => {
     async function setDataFromStorage() {
-      const list = await AsyncStorage.getItem('marketList');
-      const amount = await AsyncStorage.getItem('targetAmount');
+      const storedLists = await AsyncStorage.getItem('lists');
 
-      if (list) setMarketList(list);
-      if (amount) setTargetAmount(amount);
+      if (storedLists) setLists(JSON.parse(storedLists));
     }
 
     setDataFromStorage();
   }, []);
 
-  const updateMarketlist = (list) => {
-    setMarketList(list);
-    AsyncStorage.setItem('marketList', list);
+  const updateLists = (list) => {
+    const newLists = [...lists, list];
+    setLists(newLists);
+    AsyncStorage.setItem('lists', JSON.stringify(newLists));
   };
 
-  const updateTargetAmount = (amount) => {
-    setTargetAmount(amount);
-    AsyncStorage.setItem('targetAmount', amount);
-  };
+  console.log('lists ->', lists);
 
   const value = {
-    marketList,
-    targetAmount,
-    updateMarketlist,
-    updateTargetAmount,
+    lists,
+    updateLists,
   };
 
   return <ListContext.Provider value={value}>{children}</ListContext.Provider>;
