@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import * as SplashScreen from 'expo-splash-screen';
 import ListProvider from './store';
 import Navigator from './components/Navigator';
 import {
@@ -19,6 +20,10 @@ export default function App() {
     Quicksand_600SemiBold,
     Quicksand_700Bold,
   });
+
+  if (!fontsLoaded) {
+    SplashScreen.hideAsync();
+  }
 
   return (
     <ListProvider>
