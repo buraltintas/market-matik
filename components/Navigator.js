@@ -5,6 +5,7 @@ import { GlobalStyles } from '../constants/styles';
 import Welcome from '../screens/Welcome';
 import MarketList from '../screens/MarketList';
 import CreateList from '../screens/CreateList';
+import Lists from '../screens/Lists';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +30,7 @@ const Navigator = () => {
           name='CreateList'
           component={CreateList}
           options={{
-            headerShown: false,
+            title: 'Yeni Alışveriş Listesi',
           }}
         />
         <Stack.Screen
@@ -37,6 +38,13 @@ const Navigator = () => {
           component={MarketList}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name='Lists'
+          component={Lists}
+          options={{
+            title: 'Geçmiş Listelerim',
           }}
         />
       </Stack.Navigator>

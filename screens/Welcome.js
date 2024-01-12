@@ -1,14 +1,19 @@
-import { Text, View, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { useContext } from 'react';
 import { ListContext } from '../store';
 import { Video } from 'expo-av';
 import { GlobalStyles } from '../constants/styles';
+import Button from '../components/Button';
 
 const Welcome = ({ navigation }) => {
   const ctx = useContext(ListContext);
 
-  const startHandler = () => {
+  const goToNewList = () => {
     navigation.navigate('CreateList');
+  };
+
+  const goToLists = () => {
+    navigation.navigate('Lists');
   };
 
   return (
@@ -26,15 +31,10 @@ const Welcome = ({ navigation }) => {
         isMuted
         shouldPlay
       />
-      <Pressable
-        style={({ pressed }) => [
-          styles.button,
-          pressed ? styles.buttonPressed : null,
-        ]}
-        onPress={startHandler}
-      >
-        <Text style={styles.buttonText}>Başla!</Text>
-      </Pressable>
+      <View style={styles.buttons}>
+        <Button onPress={goToNewList} label={'Yeni Liste'} />
+        <Button onPress={goToLists} label={'Listelerim'} />
+      </View>
     </View>
   );
 };
@@ -68,22 +68,10 @@ const styles = StyleSheet.create({
     aspectRatio: 0.57,
     height: Dimensions.get('screen').height,
   },
-  button: {
+  buttons: {
     position: 'absolute',
-    bottom: 120,
-    zIndex: 9999,
-    borderColor: GlobalStyles.colors.primary,
-    borderWidth: 1,
-    padding: 16,
-    borderRadius: 16,
-    backgroundColor: GlobalStyles.colors.secondary,
-  },
-  buttonText: {
-    fontSize: 24,
-    fontFamily: GlobalStyles.fonts.medium,
-  },
-  buttonPressed: {
-    opacity: 0.7,
+    bottom: 180,
+    gap: 16,
   },
 });
 
