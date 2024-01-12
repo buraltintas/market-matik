@@ -1,15 +1,20 @@
+import { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, FlatList } from 'react-native';
-import { useState } from 'react';
+import CurrencyInput from 'react-native-currency-input';
 import Button from '../components/Button';
 import ListItem from '../components/ListItem';
 import { GlobalStyles } from '../constants/styles';
+import { ListContext } from '../store';
 
 const CreateList = () => {
+  const { createNewList } = useContext(ListContext);
   const [list, setList] = useState([]);
   const [itemName, setItemName] = useState('');
+  const [totalAmountValue, setTotalAmountValue] = useState(null);
+  const [totalAmountText, setTotalAmountText] = useState('');
   const [error, setError] = useState(false);
 
-  const onChangeHandler = (value) => {
+  const onChangeNameHandler = (value) => {
     setItemName(value);
   };
 
@@ -43,13 +48,24 @@ const CreateList = () => {
     setList(newList);
   };
 
+  const createList = () => {
+    const listData = {
+      list,
+      totalAmountValue,
+      totalAmountText,
+      createdDate: new Date(),
+      marketDate: null,
+      name: null,
+    };
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Alışveriş Listeni Oluşturmaya Başla</Text>
       <View style={styles.addItemContainer}>
         <TextInput
           style={styles.listInput}
-          onChangeText={onChangeHandler}
+          onChangeText={onChangeNameHandler}
           value={itemName}
           placeholder='Ürün Adı'
         />
@@ -77,7 +93,27 @@ const CreateList = () => {
         />
       </View>
 
-      <View style={styles.footerButton}>
+      <View style={styles.footer}>
+        <CurrencyInput
+          value={totalAmountValue}
+          onChangeValue={setTotalAmountValue}
+          renderTextInput={(textInputProps) => (
+            <TextInput
+              {...textInputProps}
+              style={styles.listInput}
+              placeholder='Tahmini Tutar'
+              keyboardType='numeric'
+            />
+          )}
+          prefix='₺ '
+          delimiter='.'
+          separator=','
+          precision={0}
+          minValue={0}
+          onChangeText={(formattedValue) => {
+            setTotalAmountText(formattedValue);
+          }}
+        />
         <Button label={'Oluştur'} onPress={() => {}} />
       </View>
     </View>
@@ -102,6 +138,7 @@ const styles = StyleSheet.create({
   },
   listInput: {
     height: 48,
+    maxHeight: 48,
     borderWidth: 1,
     borderColor: GlobalStyles.colors.primary,
     borderRadius: 8,
@@ -117,11 +154,9 @@ const styles = StyleSheet.create({
   list: {
     padding: 16,
   },
-  footerButton: {
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
+  footer: {
+    height: 160,
+    gap: 8,
     paddingHorizontal: 16,
     paddingVertical: 24,
     backgroundColor: GlobalStyles.colors.secondary,
