@@ -60,20 +60,23 @@ const CreateList = () => {
         />
       </View>
       {error && <Text style={styles.errorText}>Bu ürün zaten listede!</Text>}
-      <FlatList
-        style={styles.list}
-        data={list}
-        renderItem={({ item, index }) => (
-          <ListItem
-            name={item.name}
-            onIconPress={() => deleteItem(item.name)}
-            withDeleteIcon
-            order={index + 1}
-          />
-        )}
-        keyExtractor={(item) => item.name}
-        contentContainerStyle={{ paddingBottom: 120 }}
-      />
+      <View style={{ flex: 1 }}>
+        <FlatList
+          style={styles.list}
+          data={list}
+          renderItem={({ item, index }) => (
+            <ListItem
+              name={item.name}
+              onIconPress={() => deleteItem(item.name)}
+              withDeleteIcon
+              order={index + 1}
+            />
+          )}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{ paddingBottom: 24 }}
+        />
+      </View>
+
       <View style={styles.footerButton}>
         <Button label={'Oluştur'} onPress={() => {}} />
       </View>
@@ -115,10 +118,10 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   footerButton: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
+    // position: 'absolute',
+    // left: 0,
+    // right: 0,
+    // bottom: 0,
     paddingHorizontal: 16,
     paddingVertical: 24,
     backgroundColor: GlobalStyles.colors.secondary,
