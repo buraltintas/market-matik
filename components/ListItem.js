@@ -4,7 +4,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from '../constants/styles';
 
 const ListItem = (props) => {
-  console.log('props ->', props);
   return (
     <View style={styles.container}>
       <View style={styles.nameContainer}>
