@@ -39,17 +39,18 @@ const ListProvider = ({ children }) => {
     return selectedList;
   };
 
-  const updateList = (id, list) => {
+  const updateList = (id, listData) => {
     const copyLists = [...lists];
     const selectedIndex = copyLists.findIndex((l) => l.id === id);
-    copyLists[selectedIndex] = list;
+    copyLists[selectedIndex] = listData;
     setLists(copyLists);
     AsyncStorage.setItem('lists', JSON.stringify(copyLists));
   };
 
-  const finishList = (id) => {
+  const finishList = (id, listData) => {
     const copyLists = [...lists];
     const selectedIndex = copyLists.findIndex((l) => l.id === id);
+    copyLists[selectedIndex] = listData;
     copyLists[selectedIndex].isDone = true;
     setLists(copyLists);
     AsyncStorage.setItem('lists', JSON.stringify(copyLists));

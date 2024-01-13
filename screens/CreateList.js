@@ -80,6 +80,9 @@ const CreateList = ({ navigation }) => {
           onChangeText={onChangeNameHandler}
           value={itemName}
           placeholder='Ürün Adı'
+          enterKeyHint='enter'
+          onSubmitEditing={() => addToList()}
+          blurOnSubmit={false}
         />
         <Button
           onPress={addToList}
@@ -95,7 +98,7 @@ const CreateList = ({ navigation }) => {
           data={list}
           renderItem={({ item, index }) => (
             <ListItem
-              name={item.name}
+              item={item}
               onIconPress={() => deleteItem(item.name)}
               withDeleteIcon
               order={index + 1}

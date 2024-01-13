@@ -121,7 +121,7 @@ const MarketList = ({ route, navigation }) => {
       {
         text: 'Tamamla!',
         onPress: () => {
-          finishList(route.params.id);
+          finishList(route.params.id, listData);
           navigation.navigate('Lists');
         },
       },
@@ -189,6 +189,8 @@ const MarketList = ({ route, navigation }) => {
           onChangeText={setItemName}
           value={itemName}
           placeholder='Ürün Adı'
+          enterKeyHint='enter'
+          onSubmitEditing={() => addToList()}
         />
         <Button
           onPress={addToList}
