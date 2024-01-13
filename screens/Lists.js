@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   date: {
     width: '40%',
     fontFamily: GlobalStyles.fonts.semibold,
-    fontSize: 16,
+    fontSize: 14,
   },
   iconContainer: {
     alignItems: 'center',
