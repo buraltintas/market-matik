@@ -22,9 +22,16 @@ const ListProvider = ({ children }) => {
     AsyncStorage.setItem('lists', JSON.stringify(newLists));
   };
 
+  const deleteListFromLists = (id) => {
+    const newLists = lists.filter((l) => l.id !== id);
+    setLists(newLists);
+    AsyncStorage.setItem('lists', JSON.stringify(newLists));
+  };
+
   const value = {
     lists,
     updateLists,
+    deleteListFromLists,
   };
 
   return <ListContext.Provider value={value}>{children}</ListContext.Provider>;

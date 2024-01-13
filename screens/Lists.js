@@ -1,12 +1,26 @@
-import { useContext, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { useContext } from 'react';
+import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from '../constants/styles';
 import { ListContext } from '../store';
 import formatDate from '../utils/format-date';
 
 const Lists = ({ navigation }) => {
-  const { lists } = useContext(ListContext);
+  const { lists, deleteListFromLists } = useContext(ListContext);
+
+  const deleteList = (id) => {
+    Alert.alert('Listeyi Siliyorsunuz!', 'Emin Misiniz?', [
+      {
+        text: 'Vazgeç',
+        style: 'cancel',
+      },
+      {
+        text: 'Evet!',
+        style: 'destructive',
+        onPress: () => deleteListFromLists(id),
+      },
+    ]);
+  };
 
   return (
     <View style={styles.container}>
@@ -35,7 +49,12 @@ const Lists = ({ navigation }) => {
               </View>
               <Text style={styles.count}>{item.list.length}</Text>
             </View>
-            <Ionicons name='trash-outline' size={24} color='#777' />
+            <Ionicons
+              name='trash-outline'
+              size={24}
+              color='#777'
+              onPress={() => deleteList(item.id)}
+            />
           </View>
         )}
         keyExtractor={(item) => item.id}
