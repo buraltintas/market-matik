@@ -21,16 +21,22 @@ export default function App() {
     Quicksand_700Bold,
   });
 
+  console.log('fontsLoaded ->', fontsLoaded);
+
   if (!fontsLoaded) {
     SplashScreen.hideAsync();
   }
 
   return (
-    <ListProvider>
-      <StatusBar style='auto' />
-      <SafeAreaProvider>
-        <Navigator />
-      </SafeAreaProvider>
-    </ListProvider>
+    <>
+      {fontsLoaded && (
+        <ListProvider>
+          <StatusBar style='auto' />
+          <SafeAreaProvider>
+            <Navigator />
+          </SafeAreaProvider>
+        </ListProvider>
+      )}
+    </>
   );
 }

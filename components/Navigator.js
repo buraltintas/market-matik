@@ -44,7 +44,7 @@ const Navigator = () => {
           name='Lists'
           component={Lists}
           options={{
-            title: 'Geçmiş Listelerim',
+            title: 'Listelerim',
           }}
         />
       </Stack.Navigator>

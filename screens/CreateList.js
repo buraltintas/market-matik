@@ -4,16 +4,21 @@ import uuid from 'react-native-uuid';
 import CurrencyInput from 'react-native-currency-input';
 import Button from '../components/Button';
 import ListItem from '../components/ListItem';
+import TitleText from '../components/TitleText';
 import { GlobalStyles } from '../constants/styles';
 import { ListContext } from '../store';
 
-const CreateList = () => {
+const CreateList = ({ navigation }) => {
   const { updateLists } = useContext(ListContext);
   const [list, setList] = useState([]);
   const [itemName, setItemName] = useState('');
   const [totalAmountValue, setTotalAmountValue] = useState(null);
   const [totalAmountText, setTotalAmountText] = useState('');
   const [error, setError] = useState(false);
+
+  const goToLists = () => {
+    navigation.navigate('Lists');
+  };
 
   const onChangeNameHandler = (value) => {
     setItemName(value);
@@ -62,11 +67,12 @@ const CreateList = () => {
     };
 
     updateLists(listData);
+    goToLists();
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Alışveriş Listeni Oluşturmaya Başla</Text>
+      <TitleText text={'Alışveriş Listeni Oluşturmaya Başla'} />
       <View style={styles.addItemContainer}>
         <TextInput
           style={styles.listInput}
@@ -119,7 +125,11 @@ const CreateList = () => {
             setTotalAmountText(formattedValue);
           }}
         />
-        <Button label={'Oluştur'} onPress={createList} />
+        <Button
+          label={'Oluştur'}
+          onPress={createList}
+          disabled={list.length < 1}
+        />
       </View>
     </View>
   );
@@ -128,12 +138,6 @@ const CreateList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 24,
-    fontSize: 16,
-    fontFamily: GlobalStyles.fonts.semibold,
   },
   addItemContainer: {
     flexDirection: 'row',

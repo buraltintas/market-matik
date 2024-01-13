@@ -22,8 +22,6 @@ const ListProvider = ({ children }) => {
     AsyncStorage.setItem('lists', JSON.stringify(newLists));
   };
 
-  console.log('lists ->', lists);
-
   const value = {
     lists,
     updateLists,

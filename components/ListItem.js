@@ -11,7 +11,6 @@ const ListItem = (props) => {
           {props.name}
         </Text>
       </View>
-
       <View>
         {props.price && <Text>{props.price}</Text>}
         {props.withDeleteIcon && (
@@ -29,7 +28,6 @@ const ListItem = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
