@@ -32,8 +32,16 @@ const Welcome = ({ navigation }) => {
         shouldPlay
       />
       <View style={styles.buttons}>
-        <Button onPress={goToNewList} label={'Yeni Liste'} />
-        <Button onPress={goToLists} label={'Listelerim'} />
+        <Button
+          onPress={goToNewList}
+          label={'Yeni Liste'}
+          style={{ height: 48 }}
+        />
+        <Button
+          onPress={goToLists}
+          label={'Listelerim'}
+          style={{ height: 48 }}
+        />
       </View>
     </View>
   );

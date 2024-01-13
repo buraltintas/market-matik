@@ -1,18 +1,41 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TextInput } from 'react-native';
+import CurrencyInput from 'react-native-currency-input';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from '../constants/styles';
 
 const ListItem = (props) => {
+  console.log('props ->', props);
   return (
     <View style={styles.container}>
       <View style={styles.nameContainer}>
         <Text style={styles.order}>{props.order}</Text>
         <Text style={styles.name} numberOfLines={1}>
-          {props.name}
+          {props.item.name}
         </Text>
       </View>
-      <View>
-        {props.price && <Text>{props.price}</Text>}
+      <View style={styles.priceIconContainer}>
+        {props.withAmountInput && (
+          <CurrencyInput
+            value={props.item.priceValue}
+            onChangeValue={props.amountValueHandler}
+            renderTextInput={(textInputProps) => (
+              <TextInput
+                {...textInputProps}
+                style={styles.priceInput}
+                placeholder='Fiyat'
+                keyboardType='numeric'
+              />
+            )}
+            prefix='₺ '
+            delimiter='.'
+            separator=','
+            precision={0}
+            minValue={0}
+            onChangeText={(formattedValue) => {
+              props.amountTextHandler(formattedValue);
+            }}
+          />
+        )}
         {props.withDeleteIcon && (
           <Ionicons
             name='trash-outline'
@@ -43,6 +66,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
+  priceIconContainer: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+  },
   order: {
     fontFamily: GlobalStyles.fonts.regular,
     fontSize: 16,
@@ -52,6 +80,14 @@ const styles = StyleSheet.create({
     fontFamily: GlobalStyles.fonts.medium,
     fontSize: 20,
     maxWidth: '85%',
+  },
+  priceInput: {
+    height: 36,
+    borderWidth: 1,
+    borderColor: GlobalStyles.colors.primary,
+    borderRadius: 8,
+    padding: 10,
+    width: 80,
   },
 });
 

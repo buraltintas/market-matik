@@ -39,7 +39,8 @@ const CreateList = ({ navigation }) => {
 
     const item = {
       name: itemName,
-      price: null,
+      priceValue: null,
+      priceText: null,
     };
 
     setList((prev) => [...prev, item]);
@@ -84,6 +85,7 @@ const CreateList = ({ navigation }) => {
           onPress={addToList}
           label={'Ekle'}
           disabled={itemName.length < 1}
+          style={{ height: 48 }}
         />
       </View>
       {error && <Text style={styles.errorText}>Bu ürün zaten listede!</Text>}
@@ -103,7 +105,6 @@ const CreateList = ({ navigation }) => {
           contentContainerStyle={{ paddingBottom: 24 }}
         />
       </View>
-
       <View style={styles.footer}>
         <CurrencyInput
           value={totalAmountValue}

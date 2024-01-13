@@ -1,8 +1,16 @@
 import { useContext } from 'react';
-import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Alert,
+  Pressable,
+} from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from '../constants/styles';
 import { ListContext } from '../store';
+import TitleText from '../components/TitleText';
 import formatDate from '../utils/format-date';
 
 const Lists = ({ navigation }) => {
@@ -22,6 +30,16 @@ const Lists = ({ navigation }) => {
     ]);
   };
 
+  const goToMarketList = (id) => {
+    navigation.navigate('MarketList', {
+      id,
+    });
+  };
+
+  if (lists.length < 1) {
+    return <TitleText text='Henüz bir listeniz yok :(' />;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -34,7 +52,10 @@ const Lists = ({ navigation }) => {
         data={lists}
         renderItem={({ item, index }) => (
           <View style={styles.item}>
-            <View style={styles.itemData}>
+            <Pressable
+              style={styles.itemData}
+              onPress={() => goToMarketList(item.id)}
+            >
               <Text style={styles.date}>{formatDate(item.createdDate)}</Text>
               <View style={styles.iconContainer}>
                 <Ionicons
@@ -48,7 +69,7 @@ const Lists = ({ navigation }) => {
                 />
               </View>
               <Text style={styles.count}>{item.list.length}</Text>
-            </View>
+            </Pressable>
             <Ionicons
               name='trash-outline'
               size={24}

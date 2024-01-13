@@ -8,7 +8,7 @@ const TitleText = (props) => {
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
-    marginVertical: 24,
+    marginVertical: 16,
     fontSize: 16,
     fontFamily: GlobalStyles.fonts.semibold,
   },

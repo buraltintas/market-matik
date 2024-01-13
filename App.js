@@ -21,8 +21,6 @@ export default function App() {
     Quicksand_700Bold,
   });
 
-  console.log('fontsLoaded ->', fontsLoaded);
-
   if (!fontsLoaded) {
     SplashScreen.hideAsync();
   }
