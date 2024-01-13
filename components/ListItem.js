@@ -17,7 +17,7 @@ const ListItem = (props) => {
           <Ionicons
             name='trash-outline'
             size={24}
-            color='#777'
+            color='#E5595F'
             onPress={props.onIconPress}
           />
         )}

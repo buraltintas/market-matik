@@ -52,7 +52,7 @@ const Lists = ({ navigation }) => {
             <Ionicons
               name='trash-outline'
               size={24}
-              color='#777'
+              color='#E5595F'
               onPress={() => deleteList(item.id)}
             />
           </View>
