@@ -88,6 +88,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: GlobalStyles.fonts.semibold,
     textAlign: 'center',
+    borderWidth: 1,
+    borderColor: GlobalStyles.colors.primary,
+    borderRadius: 8,
+    backgroundColor: GlobalStyles.colors.secondary,
+    opacity: 0.7,
   },
   videoStyle: {
     opacity: 0.3,
