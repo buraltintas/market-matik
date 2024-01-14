@@ -1,3 +1,9 @@
+import {
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  Keyboard,
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
@@ -28,12 +34,16 @@ export default function App() {
   return (
     <>
       {fontsLoaded && (
-        <ListProvider>
-          <StatusBar style='auto' />
-          <SafeAreaProvider>
-            <Navigator />
-          </SafeAreaProvider>
-        </ListProvider>
+        <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <ListProvider>
+              <StatusBar style='auto' />
+              <SafeAreaProvider>
+                <Navigator />
+              </SafeAreaProvider>
+            </ListProvider>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
       )}
     </>
   );

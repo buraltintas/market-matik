@@ -29,11 +29,6 @@ const Welcome = ({ navigation }) => {
         <Text style={styles.infoText}>
           Alışverişlerinizi daha akıllı ve hesaplı bir şekilde yönetin!
         </Text>
-        <Text style={styles.descriptionText}>
-          Listenizi oluşturun, hedef tutarınızı belirleyin. Alışveriş sepetinize
-          ürünleri eklerken fiyatları yazın ve limitinizi aşmayın. Kasada
-          sürprizle karşılaşmayın!
-        </Text>
       </View>
       <Video
         style={styles.videoStyle}
@@ -83,17 +78,6 @@ const styles = StyleSheet.create({
     fontFamily: GlobalStyles.fonts.semibold,
     textAlign: 'center',
   },
-  descriptionText: {
-    padding: 24,
-    fontSize: 20,
-    fontFamily: GlobalStyles.fonts.semibold,
-    textAlign: 'center',
-    borderWidth: 1,
-    borderColor: GlobalStyles.colors.primary,
-    borderRadius: 8,
-    backgroundColor: GlobalStyles.colors.secondary,
-    opacity: 0.7,
-  },
   videoStyle: {
     opacity: 0.3,
     aspectRatio: 0.57,
@@ -102,7 +86,7 @@ const styles = StyleSheet.create({
   buttons: {
     width: 180,
     position: 'absolute',
-    bottom: 180,
+    bottom: 120,
     gap: 32,
   },
 });

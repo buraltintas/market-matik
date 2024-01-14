@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   footer: {
     borderTopWidth: 1,
     borderColor: GlobalStyles.colors.primary,
-    height: 120,
     gap: 8,
     paddingHorizontal: 16,
     paddingTop: 16,

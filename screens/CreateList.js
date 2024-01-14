@@ -153,6 +153,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     gap: 16,
+    borderBottomWidth: 1,
+    borderColor: GlobalStyles.colors.primary,
   },
   listInput: {
     height: 48,
@@ -173,10 +175,13 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   footer: {
+    borderTopWidth: 1,
+    borderColor: GlobalStyles.colors.primary,
     height: 160,
     gap: 8,
     paddingHorizontal: 16,
-    paddingVertical: 24,
+    paddingBottom: 24,
+    paddingTop: 16,
     backgroundColor: GlobalStyles.colors.secondary,
   },
 });
