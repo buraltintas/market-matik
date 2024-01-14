@@ -45,7 +45,7 @@ const Navigator = () => {
           name='MarketList'
           component={MarketList}
           options={{
-            title: 'Alışveriş Zamanı',
+            title: 'Alışveriş Listesi',
           }}
         />
         <Stack.Screen

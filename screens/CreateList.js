@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { View, Text, StyleSheet, TextInput, FlatList } from 'react-native';
 import uuid from 'react-native-uuid';
 import CurrencyInput from 'react-native-currency-input';
@@ -9,6 +9,7 @@ import { GlobalStyles } from '../constants/styles';
 import { ListContext } from '../store';
 
 const CreateList = ({ navigation }) => {
+  const flatListRef = useRef(null);
   const { updateLists } = useContext(ListContext);
   const [list, setList] = useState([]);
   const [itemName, setItemName] = useState('');
@@ -46,6 +47,9 @@ const CreateList = ({ navigation }) => {
     setList((prev) => [...prev, item]);
     setItemName('');
     setError(false);
+    setTimeout(() => {
+      flatListRef.current.scrollToEnd();
+    }, 100);
   };
 
   const deleteItem = (name) => {
@@ -94,6 +98,7 @@ const CreateList = ({ navigation }) => {
       {error && <Text style={styles.errorText}>Bu ürün zaten listede!</Text>}
       <View style={{ flex: 1 }}>
         <FlatList
+          ref={flatListRef}
           style={styles.list}
           data={list}
           renderItem={({ item, index }) => (

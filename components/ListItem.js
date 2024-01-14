@@ -13,6 +13,7 @@ const ListItem = (props) => {
         </Text>
       </View>
       <View style={styles.priceIconContainer}>
+        {props.withJustAmount && <Text>{props.item.priceText}</Text>}
         {props.withAmountInput && (
           <CurrencyInput
             value={props.item.priceValue}

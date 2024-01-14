@@ -18,7 +18,7 @@ const ListProvider = ({ children }) => {
 
   const updateLists = (list) => {
     if (!list) return;
-    const newLists = [...lists, list];
+    const newLists = [list, ...lists];
 
     setLists(newLists);
     AsyncStorage.setItem('lists', JSON.stringify(newLists));
@@ -52,6 +52,7 @@ const ListProvider = ({ children }) => {
     const selectedIndex = copyLists.findIndex((l) => l.id === id);
     copyLists[selectedIndex] = listData;
     copyLists[selectedIndex].isDone = true;
+    copyLists[selectedIndex].doneDate = new Date();
     setLists(copyLists);
     AsyncStorage.setItem('lists', JSON.stringify(copyLists));
   };
