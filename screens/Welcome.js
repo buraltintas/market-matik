@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { useContext } from 'react';
 import { ListContext } from '../store';
 import { Video } from 'expo-av';
+import { AntDesign } from '@expo/vector-icons';
 import { GlobalStyles } from '../constants/styles';
 import Button from '../components/Button';
 
@@ -19,9 +20,19 @@ const Welcome = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
+        <AntDesign
+          name='shoppingcart'
+          size={48}
+          color={GlobalStyles.colors.primary}
+        />
         <Text style={styles.title}>MarketMatik</Text>
         <Text style={styles.infoText}>
           Alışverişlerinizi daha akıllı ve hesaplı bir şekilde yönetin!
+        </Text>
+        <Text style={styles.descriptionText}>
+          Listenizi oluşturun, hedef tutarınızı belirleyin. Alışveriş sepetinize
+          ürünleri eklerken fiyatları yazın ve limitinizi aşmayın. Kasada
+          sürprizle karşılaşmayın!
         </Text>
       </View>
       <Video
@@ -62,6 +73,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
+    marginTop: 16,
     fontFamily: GlobalStyles.fonts.bold,
     color: GlobalStyles.colors.primary,
   },
@@ -71,15 +83,22 @@ const styles = StyleSheet.create({
     fontFamily: GlobalStyles.fonts.semibold,
     textAlign: 'center',
   },
+  descriptionText: {
+    padding: 24,
+    fontSize: 20,
+    fontFamily: GlobalStyles.fonts.semibold,
+    textAlign: 'center',
+  },
   videoStyle: {
     opacity: 0.3,
     aspectRatio: 0.57,
     height: Dimensions.get('screen').height,
   },
   buttons: {
+    width: 180,
     position: 'absolute',
     bottom: 180,
-    gap: 16,
+    gap: 32,
   },
 });
 
