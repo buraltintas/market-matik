@@ -1,5 +1,4 @@
 import { useContext, useLayoutEffect, useState } from 'react';
-import { Text } from 'react-native';
 import { ListContext } from '../store';
 import ActiveMarketList from '../components/ActiveMarketList';
 import DoneMarketList from '../components/DoneMarketList';

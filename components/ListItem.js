@@ -1,11 +1,4 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import { Text, View, StyleSheet, TextInput } from 'react-native';
 import CurrencyInput from 'react-native-currency-input';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from '../constants/styles';
