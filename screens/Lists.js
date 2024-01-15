@@ -37,7 +37,7 @@ const Lists = ({ navigation }) => {
   };
 
   if (lists.length < 1) {
-    return <TitleText text='Henüz bir listeniz yok :(' />;
+    return <TitleText text='Henüz bir liste yok :(' />;
   }
 
   return (
