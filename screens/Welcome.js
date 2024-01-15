@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Platform } from 'react-native';
 import { useContext } from 'react';
 import { ListContext } from '../store';
 import { Video } from 'expo-av';
@@ -30,13 +30,15 @@ const Welcome = ({ navigation }) => {
           Alışverişlerinizi daha akıllı ve hesaplı bir şekilde yönetin!
         </Text>
       </View>
-      <Video
-        style={styles.videoStyle}
-        source={require('../assets/video.mp4')}
-        isLooping
-        isMuted
-        shouldPlay
-      />
+      {Platform.OS === 'ios' && (
+        <Video
+          style={styles.videoStyle}
+          source={require('../assets/video.mp4')}
+          isLooping
+          isMuted
+          shouldPlay
+        />
+      )}
       <View style={styles.buttons}>
         <Button
           onPress={goToNewList}

@@ -139,6 +139,7 @@ const ActiveMarketList = (props) => {
   };
 
   if (listData.list.length < 1) return null;
+
   return (
     <View style={styles.container}>
       <TitleText text='Alışverişinizi Tamamlayın' />
@@ -224,6 +225,7 @@ const ActiveMarketList = (props) => {
           ref={flatListRef}
           style={styles.list}
           data={listData.list}
+          removeClippedSubviews={false}
           renderItem={({ item, index }) => (
             <ListItem
               item={item}

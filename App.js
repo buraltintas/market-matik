@@ -31,10 +31,15 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
+  console.log('keyboard ->', Keyboard.isVisible());
+
   return (
     <>
       {fontsLoaded && (
-        <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
+          style={{ flex: 1 }}
+        >
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <ListProvider>
               <StatusBar style='auto' />
