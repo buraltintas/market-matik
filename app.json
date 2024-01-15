@@ -12,18 +12,27 @@
       "resizeMode": "contain",
       "backgroundColor": "#FFF6ED"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.baltintas.marketmatik"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFF6ED"
-      }
+      },
+      "package": "com.baltintas.marketmatik"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5db26e7f-806e-4018-be0d-fd52e587543b"
+      }
     }
   }
 }

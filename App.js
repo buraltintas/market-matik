@@ -31,8 +31,6 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
-  console.log('keyboard ->', Keyboard.isVisible());
-
   return (
     <>
       {fontsLoaded && (
