@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   Alert,
+  Keyboard,
 } from 'react-native';
 import CurrencyInput from 'react-native-currency-input';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -24,6 +25,27 @@ const ActiveMarketList = (props) => {
   const [error, setError] = useState(false);
   const [isAmountEditing, setIsAmountEditing] = useState(false);
   const [totalSpent, setTotalSpent] = useState(0);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   useEffect(() => {
     if (listData.list) setTotalSpent(calculateTotalSpent());
@@ -95,7 +117,7 @@ const ActiveMarketList = (props) => {
 
   const onItemAmountChangeHandler = (index, amount, type) => {
     const newList = listData.list.map((item, i) => {
-      if (index === i && amount) {
+      if (index === i) {
         item[type] = amount;
       }
       return item;
@@ -139,6 +161,8 @@ const ActiveMarketList = (props) => {
   };
 
   if (listData.list.length < 1) return null;
+
+  console.log('Keyboard ->', keyboardVisible);
 
   return (
     <View style={styles.container}>
@@ -247,48 +271,52 @@ const ActiveMarketList = (props) => {
         />
       </View>
 
-      <View style={styles.footer}>
-        {totalSpent > 0 && (
-          <Text style={styles.totalSpentText}>
-            Sepetteki Toplam Tutar: ₺ {totalSpent.toLocaleString('tr-TR')}
-          </Text>
-        )}
-        {totalSpent > 0 && listData.totalAmountValue > 0 && (
-          <View style={styles.spentContainer}>
-            <Ionicons
-              name={
-                totalSpent > +listData.totalAmountValue
-                  ? 'close-circle-sharp'
-                  : 'checkmark-circle-sharp'
-              }
-              size={16}
-              color={
-                totalSpent > +listData.totalAmountValue ? '#E5595F' : '#69D07E'
-              }
-            />
+      {!keyboardVisible && (
+        <View style={styles.footer}>
+          {totalSpent > 0 && (
             <Text style={styles.totalSpentText}>
-              Hedefinden ₺{' '}
-              {Math.abs(totalSpent - +listData.totalAmountValue).toLocaleString(
-                'tr-TR'
-              )}{' '}
-              daha {totalSpent > +listData.totalAmountValue ? 'fazla' : 'az'}{' '}
-              harcıyorsun!
+              Sepetteki Toplam Tutar: ₺ {totalSpent.toLocaleString('tr-TR')}
             </Text>
+          )}
+          {totalSpent > 0 && listData.totalAmountValue > 0 && (
+            <View style={styles.spentContainer}>
+              <Ionicons
+                name={
+                  totalSpent > +listData.totalAmountValue
+                    ? 'close-circle-sharp'
+                    : 'checkmark-circle-sharp'
+                }
+                size={16}
+                color={
+                  totalSpent > +listData.totalAmountValue
+                    ? '#E5595F'
+                    : '#69D07E'
+                }
+              />
+              <Text style={styles.totalSpentText}>
+                Hedefinden ₺{' '}
+                {Math.abs(
+                  totalSpent - +listData.totalAmountValue
+                ).toLocaleString('tr-TR')}{' '}
+                daha {totalSpent > +listData.totalAmountValue ? 'fazla' : 'az'}{' '}
+                harcıyorsun!
+              </Text>
+            </View>
+          )}
+          <View style={styles.buttons}>
+            <Button
+              label={'Güncelle'}
+              style={{ flex: 1 }}
+              onPress={updateCurrentList}
+            />
+            <Button
+              label={'Tamamla'}
+              style={{ flex: 1, backgroundColor: '#d7e4c7' }}
+              onPress={finishCurrentList}
+            />
           </View>
-        )}
-        <View style={styles.buttons}>
-          <Button
-            label={'Güncelle'}
-            style={{ flex: 1 }}
-            onPress={updateCurrentList}
-          />
-          <Button
-            label={'Tamamla'}
-            style={{ flex: 1, backgroundColor: '#d7e4c7' }}
-            onPress={finishCurrentList}
-          />
         </View>
-      </View>
+      )}
     </View>
   );
 };
