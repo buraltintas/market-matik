@@ -3,7 +3,7 @@
 A simple mobile application to manage your crocery lists.
 You can create a grocery list, set your target amount and enter price of items you put it in basket. Avoid surprising at cashier. 
 
-## Demo
+## Live
 
 You can download for your iPhone here: https://apps.apple.com/tr/app/marketmatik/id6476378508?l=tr
 
