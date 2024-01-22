@@ -162,8 +162,6 @@ const ActiveMarketList = (props) => {
 
   if (listData.list.length < 1) return null;
 
-  console.log('Keyboard ->', keyboardVisible);
-
   return (
     <View style={styles.container}>
       <TitleText text='Alışverişinizi Tamamlayın' />

@@ -2,7 +2,7 @@
   "expo": {
     "name": "MarketMatik",
     "slug": "marketmatik",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "backgroundColor": "#FFF6ED",
@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#FFF6ED"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.baltintas.marketmatik"
