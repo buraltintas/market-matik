@@ -18,7 +18,7 @@ const CreateList = ({ navigation }) => {
   const [error, setError] = useState(false);
 
   const goToLists = () => {
-    navigation.navigate('Lists');
+    navigation.replace('Lists');
   };
 
   const onChangeNameHandler = (value) => {
