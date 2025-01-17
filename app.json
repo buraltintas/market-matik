@@ -22,7 +22,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFF6ED"
       },
-      "package": "com.baltintas.marketmatik"
+      "package": "com.baltintas.marketmatik",
+      "versionCode": 4,
+      "targetSdkVersion": 34
     },
     "web": {
       "favicon": "./assets/favicon.png"
